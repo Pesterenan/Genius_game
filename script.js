@@ -28,40 +28,38 @@ let shuffleOrder = () => {
 
 //Acender Botão
 let lightColor = (element, number) => {
-  number *= 3;
-  setTimeout(() => {
-    element.classList.add("selected");
-  }, number - 1);
-
-  setTimeout(() => {
-    element.classList.remove("selected");
-  });
-};
+    number = number * 500;
+    setTimeout(() => {
+        element.classList.add('selected');
+    }, number - 250);
+    setTimeout(() => {
+        element.classList.remove('selected');
+    },number);
+}
 
 // Checar Ordem dos botões apertados
 let checkOrder = () => {
-  for (let i in clickedOrder) {
-    if (clickedOrder[i] != order[i]) {
-      gameOver();
-      break;
+    for(let i in clickedOrder) {
+        if(clickedOrder[i] != order[i]) {
+            gameOver();
+            break;
+        }
     }
-  }
-  if (clickedOrder.length == order.length) {
+    if(clickedOrder.length == order.length) {
     alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`);
     nextLevel();
   }
 };
 
 let click = (color) => {
-  clickedOrder[clickedOrder.length] = color;
-  createColorElement(color).classList.add("selected");
+    clickedOrder[clickedOrder.length] = color;
+    createColorElement(color).classList.add('selected');
 
-  (setTimeout = () => {
-    createColorElement(color).classList.remove("selected");
-    checkOrder();
-  }),
-    250;
-};
+    setTimeout(() => {
+        createColorElement(color).classList.remove('selected');
+        checkOrder();
+    },250);
+}
 
 // Função para retornar a cor
 let createColorElement = (color) => {
@@ -100,11 +98,10 @@ let playGame = () => {
 };
 
 // Eventos de Clique para as cores
-green.onClick = () => click(0);
-green.onClick = () => click(0);
-red.onClick = () => click(1);
-yellow.onClick = () => click(2);
-blue.onClick = () => click(3);
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
 
 // Inicio do jogo
 playGame();
